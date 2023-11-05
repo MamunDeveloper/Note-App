@@ -1,0 +1,41 @@
+.notes {
+  width: 150px;
+  height: 160px;
+  background-color: antiquewhite;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1rem;
+  border-radius: 16px;
+}
+.detail_box {
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+}
+
+.opend {
+  position: fixed;
+  width: 80vw;
+  height: 70vh;
+}
+.icon_box {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+@media (max-width: 428px) {
+  .notes {
+    width: 44%;
+  }
+}
+@media (max-width: 370px) {
+  .detail_box {
+    flex-direction: column;
+  }
+  .open_arrow {
+    margin-top: 5px;
+  }
+}

@@ -1,95 +1,111 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState } from "react";
+import Navbar from "./components/navbar/navbar";
+import Notes from "./components/notes/notes";
+import styles from "./page.module.css";
+import { motion } from "framer-motion";
+import noteData from "./data/notes";
+import NoteViewer from "./components/noteViewer/noteViewer";
 
 export default function Home() {
+  const [noteList, setNoteList] = useState(noteData);
+  const [showOptions, setShowOptions] = useState(false);
+  const [phoneView, setPhoneView] = useState(false);
+
+  const [noteOpen, setNoteOpen] = useState(false);
+  const [noteId, setNoteId] = useState("");
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const hideNav = () => {
+    window.addEventListener("resize", handleScreenWidth);
+    setShowOptions(!showOptions);
+    handleScreenWidth();
+  };
+
+  // For checking the width of the window
+  function handleScreenWidth() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 428 && typeof setPhoneView === "function") {
+      setPhoneView(!phoneView);
+    }
+  }
+
+  function toggleOpenNote(noteId) {
+    setNoteOpen(!noteOpen);
+    setIsEditing(!isEditing);
+    setNoteId(noteId);
+  }
+
+  function addNote(note) {
+    note.id = noteList.length + 1;
+    setNoteList([note, ...noteList]);
+  }
+  function saveNote(noteId, editedText) {
+    const note = noteList.find((notes) => {
+      return notes.id === noteId;
+    });
+    note.text = editedText;
+  }
+
+  function deleteNote(noteId) {
+    const newList = noteList.filter((note) => {
+      return note.id !== noteId;
+    });
+    console.log("delete function");
+    console.log(newList);
+    setNoteList(newList);
+  }
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      {noteOpen && (
+        <NoteViewer
+          noteList={noteList}
+          noteId={noteId}
+          toggleOpenNote={toggleOpenNote}
+          isEditing={isEditing}
+          saveNote={saveNote}
+          deleteNote={deleteNote}
+        ></NoteViewer>
+      )}
+
+      <motion.div
+        animate={
+          showOptions && phoneView
+            ? {
+                backgroundColor: "rgb(255, 68, 0)",
+                width: "100%",
+              }
+            : { width: 0 }
+        }
+        className={
+          showOptions
+            ? `${styles.navbar_container} ${styles.bg} `
+            : styles.navbar_container
+        }
+        id="navbar"
+      >
+        <Navbar
+          showOptions={showOptions}
+          hideNav={hideNav}
+          addNote={addNote}
+        ></Navbar>
+      </motion.div>
+
+      <div className={styles.content}>
+        <div className={styles.heading_box}>
+          <h1 className={styles.heading}>Notes</h1>
+        </div>
+        <div className={styles.note_box}>
+          <Notes
+            noteList={noteList}
+            toggleOpenNote={toggleOpenNote}
+            saveNote={saveNote}
+          ></Notes>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
