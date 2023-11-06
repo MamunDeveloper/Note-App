@@ -59,10 +59,16 @@ function NoteViewer({
 
         <div className={styles.icon_box}>
           {isEditing ? (
-            <FontAwesomeIcon
-              icon={faFile}
-              onClick={() => handleSave(note.id)}
-            ></FontAwesomeIcon>
+            <div className={styles.save_icon_box}>
+              <FontAwesomeIcon
+                className={styles.save_icon}
+                icon={faFile}
+                onClick={() => handleSave(note.id)}
+              ></FontAwesomeIcon>
+              <label htmlFor="save_icon" className={styles.labels}>
+                Save
+              </label>
+            </div>
           ) : (
             <FontAwesomeIcon
               icon={faPen}
@@ -74,10 +80,17 @@ function NoteViewer({
             icon={faArrowsToDot}
             onClick={toggleOpenNote}
           ></FontAwesomeIcon>
-          <FontAwesomeIcon
-            icon={faTrash}
-            onClick={() => handleDelete(note.id)}
-          ></FontAwesomeIcon>
+
+          <div className={styles.delete_icon_box}>
+            <FontAwesomeIcon
+              className={styles.delete_icon}
+              icon={faTrash}
+              onClick={() => handleDelete(note.id)}
+            ></FontAwesomeIcon>
+            <label htmlFor="delete_icon" className={styles.labels}>
+              Delete
+            </label>
+          </div>
         </div>
       </motion.div>
     </>

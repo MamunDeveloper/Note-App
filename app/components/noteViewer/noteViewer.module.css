@@ -29,6 +29,15 @@
   cursor: pointer;
 }
 
+.delete_icon_box,
+.save_icon_box {
+  display: flex;
+  flex-direction: column;
+}
+.labels {
+  font-size: xx-small;
+}
+
 /* @media (max-width: 577px) {
   .notes {
     left: 3rem;

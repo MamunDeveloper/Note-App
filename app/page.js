@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
+import logo from "./images/logo.png";
 import Navbar from "./components/navbar/navbar";
 import Notes from "./components/notes/notes";
 import styles from "./page.module.css";
@@ -96,6 +98,7 @@ export default function Home() {
 
       <div className={styles.content}>
         <div className={styles.heading_box}>
+          <Image src={logo} width={30} height={30} alt="Logo image"></Image>
           <h1 className={styles.heading}>Notes</h1>
         </div>
         <div className={styles.note_box}>
