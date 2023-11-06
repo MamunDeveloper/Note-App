@@ -44,8 +44,6 @@ function Navbar({ hideNav, showOptions, addNote }) {
     };
 
     const formattedTime = now.toLocaleString("en-US", options);
-    console.log(formattedTime);
-
     return formattedTime;
   };
 

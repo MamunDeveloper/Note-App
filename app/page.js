@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "./images/logo.png";
 import Navbar from "./components/navbar/navbar";
@@ -11,12 +11,16 @@ import NoteViewer from "./components/noteViewer/noteViewer";
 
 export default function Home() {
   const [noteList, setNoteList] = useState(noteData);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("noteList")) || [];
+    setNoteList(storedData);
+  }, []);
+
   const [showOptions, setShowOptions] = useState(false);
   const [phoneView, setPhoneView] = useState(false);
-
   const [noteOpen, setNoteOpen] = useState(false);
   const [noteId, setNoteId] = useState("");
-
   const [isEditing, setIsEditing] = useState(false);
 
   const hideNav = () => {
@@ -43,21 +47,23 @@ export default function Home() {
   function addNote(note) {
     note.id = noteList.length + 1;
     setNoteList([note, ...noteList]);
+    localStorage.setItem("noteList", JSON.stringify([note, ...noteList]));
+    console.log(localStorage.getItem("noteList"));
   }
   function saveNote(noteId, editedText) {
     const note = noteList.find((notes) => {
       return notes.id === noteId;
     });
     note.text = editedText;
+    localStorage.setItem("noteList", JSON.stringify(noteList));
   }
 
   function deleteNote(noteId) {
     const newList = noteList.filter((note) => {
       return note.id !== noteId;
     });
-    console.log("delete function");
-    console.log(newList);
     setNoteList(newList);
+    localStorage.setItem("noteList", JSON.stringify(newList));
   }
 
   return (
