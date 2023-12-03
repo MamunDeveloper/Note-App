@@ -36,7 +36,6 @@ function NoteViewer({
   return (
     <>
       <motion.div
-        drag
         className={styles.notes}
         key={note.id}
         style={{
@@ -45,7 +44,7 @@ function NoteViewer({
       >
         <div>{note.date}</div>
 
-        <div>
+        <div className={styles.text_box_container}>
           <textarea
             name=""
             id=""
