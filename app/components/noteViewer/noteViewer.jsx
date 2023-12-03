@@ -43,7 +43,7 @@ function NoteViewer({
           backgroundColor: note.bgColor,
         }}
       >
-        <div>{note.date}</div>
+        <div className={styles.date_box}>{note.date}</div>
 
         <div className={styles.text_box_container}>
           <textarea

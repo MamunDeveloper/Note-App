@@ -14,8 +14,13 @@
 }
 
 .text_box_container {
-  height: 60vh;
+  height: 95vh;
 }
+.date_box,
+.icon_box {
+  height: 5vh;
+}
+
 .text_box {
   font-family: "__Inter_e66fe9";
   font-size: large;
@@ -28,8 +33,8 @@
 .icon_box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
-  border: 2px solid red;
 }
 
 .delete_icon_box,
