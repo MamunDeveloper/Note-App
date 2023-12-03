@@ -13,11 +13,15 @@
   border: 2px solid red;
 }
 
+.text_box_container {
+  height: 70vh;
+  overflow: scroll;
+}
 .text_box {
   font-family: "__Inter_e66fe9";
   font-size: large;
   width: 100%;
-  height: 70vh;
+  height: 100%;
   background: no-repeat;
   border: none;
   outline: none;
