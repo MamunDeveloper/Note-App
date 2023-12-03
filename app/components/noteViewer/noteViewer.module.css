@@ -25,6 +25,7 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  border: 2px solid red;
 }
 
 .delete_icon_box,
