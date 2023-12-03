@@ -14,8 +14,7 @@
 }
 
 .text_box_container {
-  height: 70vh;
-  overflow: scroll;
+  height: 60vh;
 }
 .text_box {
   font-family: "__Inter_e66fe9";
