@@ -43,7 +43,14 @@ function NoteViewer({
           backgroundColor: note.bgColor,
         }}
       >
-        <div className={styles.date_box}>{note.date}</div>
+        <div
+          className={styles.date_box}
+          style={{
+            backgroundColor: note.bgColor,
+          }}
+        >
+          {note.date}
+        </div>
 
         <div className={styles.text_box_container}>
           <textarea
@@ -57,7 +64,12 @@ function NoteViewer({
           ></textarea>
         </div>
 
-        <div className={styles.icon_box}>
+        <div
+          className={styles.icon_box}
+          style={{
+            backgroundColor: note.bgColor,
+          }}
+        >
           {isEditing ? (
             <div className={styles.save_icon_box}>
               <FontAwesomeIcon

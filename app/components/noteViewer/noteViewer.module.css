@@ -11,14 +11,14 @@
   top: 0px;
   left: 0px; */
   border: 2px solid red;
+  background-color: antiquewhite;
 
   width: 100vw;
-  max-height: 100vh;
-  background-color: antiquewhite;
-  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 0 1rem;
+  justify-content: space-between; */
   position: fixed;
   z-index: 11;
   top: 0px;
@@ -26,13 +26,9 @@
 }
 
 .text_box_container {
-  height: 95vh;
+  height: 100vh;
+  border: 1px solid red;
 }
-.date_box,
-.icon_box {
-  height: 5vh;
-}
-
 .text_box {
   font-family: "__Inter_e66fe9";
   font-size: large;
@@ -42,10 +38,23 @@
   border: none;
   outline: none;
 }
+
+.date_box,
 .icon_box {
+  height: 5vh;
+  position: fixed;
+  width: 100vw;
+  padding: 1.3rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+}
+.date_box {
+  top: 0;
+}
+.icon_box {
+  justify-content: space-evenly;
+  bottom: 0;
   cursor: pointer;
 }
 
