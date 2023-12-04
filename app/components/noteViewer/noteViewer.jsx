@@ -88,10 +88,16 @@ function NoteViewer({
             ></FontAwesomeIcon>
           )}
 
-          <FontAwesomeIcon
-            icon={faArrowsToDot}
-            onClick={toggleOpenNote}
-          ></FontAwesomeIcon>
+          <div className={styles.toggle_icon_box}>
+            <FontAwesomeIcon
+              className={styles.toggle_icon}
+              icon={faArrowsToDot}
+              onClick={toggleOpenNote}
+            ></FontAwesomeIcon>
+            <label htmlFor="toggle_icon" className={styles.labels}>
+              {isEditing ? "Close" : ""}
+            </label>
+          </div>
 
           <div className={styles.delete_icon_box}>
             <FontAwesomeIcon
