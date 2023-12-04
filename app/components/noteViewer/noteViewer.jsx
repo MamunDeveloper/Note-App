@@ -36,7 +36,7 @@ function NoteViewer({
   return (
     <>
       <motion.div
-        drag
+        // drag
         className={styles.notes}
         key={note.id}
         style={{
