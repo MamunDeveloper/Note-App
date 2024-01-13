@@ -31,6 +31,10 @@ function Navbar({ hideNav, showOptions, addNote }) {
       opacity: 1,
     },
   };
+  const animationProps = {
+    whileHover: { scale: 1.2 },
+    whileTap: { scale: 0.8 },
+  };
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -74,8 +78,7 @@ function Navbar({ hideNav, showOptions, addNote }) {
             className={style.option_buttons}
             id={style.white_note}
             variants={item}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.8 }}
+            {...animationProps}
             onClick={() => handleAdd("antiquewhite")}
           ></motion.button>
 
@@ -83,8 +86,7 @@ function Navbar({ hideNav, showOptions, addNote }) {
             className={style.option_buttons}
             id={style.red_note}
             variants={item}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.8 }}
+            {...animationProps}
             onClick={() => handleAdd("red")}
           ></motion.button>
 
@@ -92,8 +94,7 @@ function Navbar({ hideNav, showOptions, addNote }) {
             className={style.option_buttons}
             id={style.blue_note}
             variants={item}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.8 }}
+            {...animationProps}
             onClick={() => handleAdd("blue")}
           ></motion.button>
 
@@ -101,8 +102,7 @@ function Navbar({ hideNav, showOptions, addNote }) {
             className={style.option_buttons}
             id={style.green_note}
             variants={item}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            {...animationProps}
             onClick={() => handleAdd("green")}
           ></motion.button>
         </motion.div>
